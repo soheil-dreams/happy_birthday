@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8ddd3">
+  <meta name="description" content="Ein zauberhafter Geburtstagsbrief, nur für dich.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ein zauberhafter Geburtstagsbrief ♡">
+  <meta property="og:description" content="Ein kleiner Brief mit ganz viel Liebe. Öffne ihn!">
+  <meta property="og:image" content="./assets/letter-front.webp">
+  <title>Ein zauberhafter Geburtstagsbrief ♡</title>
+  <link rel="icon" href="./assets/letter-front.webp" type="image/webp">
+  <link rel="preload" href="./assets/botanical-background.webp" as="image">
+  <link rel="preload" href="./assets/envelope-address.webp" as="image">
+  <link rel="stylesheet" href="./style.css?v=cinematic7">
+  <script src="./script.js?v=cinematic7" defer></script>
+</head>
+<body>
+  <main id="experience" class="experience" data-phase="address" data-hint-seen="false">
+    <div class="botanical-paper" aria-hidden="true"></div>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <div class="focus-light" aria-hidden="true"></div>
+    <canvas id="magicCanvas" class="magic-canvas" aria-hidden="true"></canvas>
+    <div class="paper-grain" aria-hidden="true"></div>
+
+    <button type="button" id="musicButton" class="corner-button music-button"
+      aria-label="Musik einschalten" aria-pressed="false" title="Musik ein- oder ausschalten">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8 18V5l12-2v13"/><ellipse cx="5.5" cy="18" rx="2.5" ry="2"/><ellipse cx="17.5" cy="16" rx="2.5" ry="2"/>
+      </svg>
+      <span class="music-pulse" aria-hidden="true"></span>
+    </button>
+
+    <section class="scene" aria-label="Interaktiver Geburtstagsbrief">
+      <div class="luminous-halo" aria-hidden="true"></div>
+      <div class="floor-shadow" aria-hidden="true"></div>
+
+      <button id="envelopeButton" class="closed-envelope" type="button"
+        aria-label="Umschlag berühren, um den Geburtstagsbrief zu öffnen">
+        <span class="envelope-parallax">
+          <span class="envelope-rotator">
+            <span class="envelope-face envelope-address">
+              <img src="./assets/envelope-address.webp" width="916" height="643"
+                alt="Geburtstagsbrief mit Briefmarke und Widmung" draggable="false" fetchpriority="high">
+            </span>
+            <span class="envelope-face envelope-sealed">
+              <img src="./assets/envelope-sealed.webp" width="919" height="647"
+                alt="Umschlag mit Blumensiegel" draggable="false">
+              <span class="seal-light" aria-hidden="true"></span>
+            </span>
+          </span>
+        </span>
+      </button>
+
+      <!-- Physically correct depth ordering: liner → floral back flap → ONE live card
+           → left and right paper wings → lower front pocket. None of these assets
+           contains the photographed invitation duplicated on the envelope. -->
+      <div class="opened-envelope" id="openedEnvelope">
+        <img class="pocket-liner" src="./assets/pocket-liner.png" width="685" height="906" alt="" aria-hidden="true" draggable="false">
+        <img class="flap" src="./assets/flap.png" width="685" height="906" alt="" aria-hidden="true" draggable="false">
+
+        <button type="button" id="cardButton" class="birthday-card"
+          aria-label="Geburtstagskarte wenden" tabindex="-1">
+          <span class="card-parallax">
+            <span class="card-rotator">
+              <span class="card-face card-front">
+                <img src="./assets/letter-front.webp" width="954" height="1354"
+                  alt="Geburtstagskarte für eine wundervolle Prinzessin" draggable="false">
+              </span>
+              <span class="card-face card-back">
+                <img src="./assets/letter-back.webp" width="960" height="1365"
+                  alt="Persönlicher Geburtstagsgruß mit Foto" draggable="false">
+              </span>
+            </span>
+          </span>
+          <!-- A gentle, non-interactive discovery cue. The card remains the only click target. -->
+          <span class="flip-hint" id="flipHint" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 11a8 8 0 1 1-2.3-5.7"/><path d="M20 4v6h-6"/>
+            </svg>
+            <span>Zum Umdrehen tippen</span>
+            <span class="hint-sparkle" aria-hidden="true">✦</span>
+          </span>
+        </button>
+
+        <div class="pocket-assembly" aria-hidden="true">
+          <img class="paper-wing left-wing" src="./assets/pocket-wing-left.png" width="685" height="906" alt="" draggable="false">
+          <img class="paper-wing right-wing" src="./assets/pocket-wing-right.png" width="685" height="906" alt="" draggable="false">
+          <img class="paper-front" src="./assets/pocket-front.png" width="685" height="906" alt="" draggable="false">
+        </div>
+      </div>
+    </section>
+
+    <nav class="tiny-actions" aria-label="Kartenfunktionen">
+      <button id="restartButton" class="quiet-button" type="button" aria-label="Animation neu starten" title="Noch einmal" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 11a9 9 0 1 1 1.9 6M3 4v7h7"/></svg>
+      </button>
+      <button id="shareButton" class="quiet-button" type="button" aria-label="Link teilen" title="Teilen" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3m0 0L8 7m4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
+      </button>
+    </nav>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <span id="srStatus" class="sr-only" aria-live="polite">Briefumschlag antippen, um die Karte zu öffnen.</span>
+    <audio id="backgroundMusic" src="./assets/birthday-melody.mp3" preload="auto" loop playsinline></audio>
+  </main>
+</body>
+</html>
